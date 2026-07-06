@@ -25,7 +25,12 @@
         "hi",
         "hello",
         "hey there",
-        "good morning"
+        "good morning",
+        "helo",
+        "hii",
+        "kese ho",
+        "kaise ho",
+        "kya haal hai"
       ],
       "responses": [
         "Welcome to Shri Satya Sai Blood Centre, Cidco. How can I help you today?"
@@ -38,7 +43,12 @@
         "what is your address",
         "how do I reach the blood bank",
         "location of the centre",
-        "directions to your centre"
+        "directions to your centre",
+        "aap kaha ho",
+        "address kya hai",
+        "kaise pahuche aapke centre tak",
+        "map bhejo",
+        "google maps location"
       ],
       "responses": [
         "We are located at Plot No. 1B, Satvahana Society, opp. Sant Tukaram Natyamandir, N-5, Cidco, Chhatrapati Sambhajinagar, Maharashtra 431003."
@@ -50,7 +60,10 @@
         "what is your phone number",
         "how can I contact you",
         "give me your contact details",
-        "phone number please"
+        "phone number please",
+        "contact number do",
+        "number batao",
+        "kaise contact kare"
       ],
       "responses": [
         "You can reach us at 09168104104. We are open 24 hours."
@@ -62,7 +75,11 @@
         "what are your timings",
         "when are you open",
         "are you open now",
-        "working hours"
+        "working hours",
+        "kitne baje khulte ho",
+        "abhi khula hai kya",
+        "timing kya hai",
+        "sunday ko khula rehta hai kya"
       ],
       "responses": [
         "We are open 24 hours, every day, for blood donation and emergency requirements."
@@ -74,7 +91,14 @@
         "I want to donate blood",
         "how can I donate blood",
         "process for blood donation",
-        "can I donate blood today"
+        "can I donate blood today",
+        "how can I book an appointment",
+        "how do I schedule a donation",
+        "book a slot for donation",
+        "blood dena hai",
+        "khoon daan karna hai",
+        "rakt daan kaise kare",
+        "mujhe blood donate karna hai"
       ],
       "responses": [
         "That's wonderful! You can walk in anytime since we're open 24 hours, or call us at 09168104104 to schedule your donation. Our centre has AC rooms and proper collection facilities to make the process comfortable."
@@ -87,10 +111,67 @@
         "am I eligible to donate blood",
         "what is the age limit for blood donation",
         "can I donate blood if I have diabetes",
-        "requirements for blood donation"
+        "requirements for blood donation",
+        "elligible hu kya main",
+        "kya mai blood de sakta hu",
+        "weight kitna hona chahiye donation ke liye",
+        "kya main blood donate kar sakti hu pregnancy ke baad"
       ],
       "responses": [
         "Generally, donors should be between 18-65 years old, weigh at least 50 kg, and be in good health. Please call us at 09168104104 so our staff can confirm your eligibility based on your specific health condition."
+      ]
+    },
+    {
+      "intent": "illness_medication",
+      "training_phrases": [
+        "can I donate if I have fever",
+        "I am on medication can I still donate",
+        "can I donate blood with cold or cough",
+        "is it safe to donate blood after taking antibiotics",
+        "mujhe bukhar hai kya main blood de sakta hu",
+        "dawai chal rahi hai kya donate kar sakte hai"
+      ],
+      "responses": [
+        "It depends on the specific illness or medication. Generally, donors should be free of fever, cold, or infection for at least a few days. Please call us at 09168104104 and our staff can confirm if it's safe for you to donate right now."
+      ]
+    },
+    {
+      "intent": "donation_frequency",
+      "training_phrases": [
+        "how often can I donate blood",
+        "how many times a year can I donate",
+        "when can I donate again after last time",
+        "kitne din baad phir se blood de sakte hai",
+        "gap kitna hona chahiye donation me"
+      ],
+      "responses": [
+        "Most healthy donors can donate whole blood roughly once every 3 months (about 4 times a year). Please call us at 09168104104 to confirm timing based on your last donation."
+      ]
+    },
+    {
+      "intent": "component_donation",
+      "training_phrases": [
+        "can I donate platelets",
+        "what is plasma donation",
+        "do you accept platelet donation",
+        "single donor platelet kya hota hai",
+        "plasma dena hai"
+      ],
+      "responses": [
+        "Yes, we accept component donations like platelets and plasma in addition to whole blood. Please call us at 09168104104 to check eligibility and availability for component donation."
+      ]
+    },
+    {
+      "intent": "post_donation_care",
+      "training_phrases": [
+        "what should I do after donating blood",
+        "can I exercise after donating blood",
+        "is it normal to feel dizzy after donation",
+        "donation ke baad kya karna chahiye",
+        "blood dene ke baad kya khaye"
+      ],
+      "responses": [
+        "After donating, rest for a few minutes, drink plenty of fluids, and avoid heavy exercise or lifting for the rest of the day. Eating iron-rich food afterward also helps. If you feel unwell, please call us at 09168104104."
       ]
     },
     {
@@ -99,7 +180,10 @@
         "do you have O negative blood available",
         "is blood available right now",
         "check blood stock",
-        "I need blood urgently"
+        "I need blood urgently",
+        "AB positive available hai kya",
+        "blood stock check karo",
+        "kya blood available hai"
       ],
       "responses": [
         "For real-time blood availability, please call us directly at 09168104104. Our team can confirm stock for the specific blood group you need."
@@ -110,10 +194,25 @@
       "training_phrases": [
         "emergency blood needed",
         "urgent blood requirement",
-        "patient needs blood immediately"
+        "patient needs blood immediately",
+        "emergency hai jaldi blood chahiye",
+        "accident hua hai blood chahiye"
       ],
       "responses": [
         "For emergencies, please call us right away at 09168104104. We are open 24 hours and will assist you as quickly as possible."
+      ]
+    },
+    {
+      "intent": "camps_events",
+      "training_phrases": [
+        "do you organize blood donation camps",
+        "can my organization host a camp with you",
+        "how to arrange a blood donation drive",
+        "camp lagwana hai hamari company me",
+        "blood donation camp kaise organize kare"
+      ],
+      "responses": [
+        "Yes, we help organize blood donation camps for companies, colleges, and communities. Please call us at 09168104104 to discuss dates and arrangements."
       ]
     },
     {
@@ -121,7 +220,8 @@
       "training_phrases": [
         "what facilities do you have",
         "is there AC in the donation room",
-        "tell me about your centre"
+        "tell me about your centre",
+        "kya facilities hai aapke yaha"
       ],
       "responses": [
         "Our centre has AC donation rooms with proper blood collection and storage facilities, ensuring a safe and comfortable experience for donors."
@@ -132,7 +232,8 @@
       "training_phrases": [
         "what do people say about you",
         "show me reviews",
-        "are you a good blood bank"
+        "are you a good blood bank",
+        "aapke reviews kaise hai"
       ],
       "responses": [
         "We're rated 4.5 out of 5 based on 17 Google reviews. Donors often mention our comfortable AC facilities and dedicated service. Thank you for your support!"
@@ -143,7 +244,8 @@
       "training_phrases": [
         "do you have facebook",
         "social media page",
-        "where can I follow you online"
+        "where can I follow you online",
+        "facebook page ka link do"
       ],
       "responses": [
         "Yes! You can follow us on Facebook: https://www.facebook.com/shrisatyasaibloodcenter"
@@ -155,7 +257,11 @@
         "bye",
         "thank you",
         "thanks, bye",
-        "that's all"
+        "that's all",
+        "thanks a lot",
+        "dhanyawad",
+        "shukriya",
+        "theek hai bye"
       ],
       "responses": [
         "Thank you for reaching out to Shri Satya Sai Blood Centre. Stay healthy, and thank you for supporting blood donation!"
