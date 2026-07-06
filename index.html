@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shri Satya Sai Blood Centre — Chat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --blood-red: #B3232D;
+    --blood-red-dark: #8C1B23;
+    --cream: #FBF7F4;
+    --ink: #241A1A;
+    --line: #E6D9D6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  .card {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(140, 27, 35, 0.15);
+    border: 1px solid var(--line);
+  }
+  .header {
+    background: linear-gradient(135deg, var(--blood-red), var(--blood-red-dark));
+    color: #fff;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .header .drop {
+    width: 34px; height: 34px;
+    background: #fff;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(45deg);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .header .drop::after {
+    content: "+";
+    transform: rotate(-45deg);
+    color: var(--blood-red);
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .header h1 { font-size: 15px; margin: 0; font-weight: 600; }
+  .header p { font-size: 12px; margin: 2px 0 0; opacity: 0.9; }
+
+  .messages {
+    height: 420px;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #fff;
+  }
+  .msg {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .bot {
+    background: var(--cream);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+  }
+  .user {
+    background: var(--blood-red);
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+  .quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0 16px 12px;
+    background: #fff;
+  }
+  .quick-replies button {
+    background: #fff;
+    border: 1px solid var(--blood-red);
+    color: var(--blood-red);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .quick-replies button:hover { background: var(--blood-red); color: #fff; }
+
+  .input-row {
+    display: flex;
+    border-top: 1px solid var(--line);
+    padding: 10px;
+    gap: 8px;
+    background: #fff;
+  }
+  .input-row input {
+    flex: 1;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-size: 14px;
+    outline: none;
+  }
+  .input-row input:focus { border-color: var(--blood-red); }
+  .input-row button {
+    background: var(--blood-red);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 0 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .input-row button:hover { background: var(--blood-red-dark); }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="header">
+    <div class="drop"></div>
+    <div>
+      <h1>Shri Satya Sai Blood Centre</h1>
+      <p>Cidco &middot; Open 24 hours</p>
+    </div>
+  </div>
+
+  <div class="messages" id="messages">
+    <div class="msg bot">Welcome to Shri Satya Sai Blood Centre, Cidco. How can I help you today?</div>
+  </div>
+
+  <div class="quick-replies">
+    <button onclick="sendQuick('Where are you located?')">Address</button>
+    <button onclick="sendQuick('I want to donate blood')">Donate blood</button>
+    <button onclick="sendQuick('What are your timings?')">Timings</button>
+    <button onclick="sendQuick('How can I contact you?')">Contact</button>
+  </div>
+
+  <div class="input-row">
+    <input type="text" id="userInput" placeholder="Type your message..." onkeydown="if(event.key==='Enter') sendMessage()">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+  // Change this to your deployed backend URL once you host it
+  // e.g. "https://your-app-name.onrender.com/chat"
+  const API_URL = "http://localhost:5000/chat";
+
+  const messagesEl = document.getElementById("messages");
+  const inputEl = document.getElementById("userInput");
+
+  function addMessage(text, sender) {
+    const div = document.createElement("div");
+    div.className = "msg " + sender;
+    div.textContent = text;
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  async function sendMessage() {
+    const text = inputEl.value.trim();
+    if (!text) return;
+    addMessage(text, "user");
+    inputEl.value = "";
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text })
+      });
+      const data = await res.json();
+      addMessage(data.reply, "bot");
+    } catch (err) {
+      addMessage("Sorry, I couldn't reach the server. Please try again shortly.", "bot");
+    }
+  }
+
+  function sendQuick(text) {
+    inputEl.value = text;
+    sendMessage();
+  }
+</script>
+
+</body>
+</html>
