@@ -1,0 +1,170 @@
+{
+  "business_info": {
+    "name": "Shri Satya Sai Blood Centre",
+    "branch": "Cidco",
+    "category": "Blood Bank",
+    "city": "Chhatrapati Sambhajinagar (Aurangabad)",
+    "state": "Maharashtra",
+    "address": "Plot No. 1B, Satvahana Society, opp. Sant Tukaram Natyamandir, N-5, Cidco, Chhatrapati Sambhajinagar, Maharashtra 431003",
+    "phone": "09168104104",
+    "hours": "Open 24 hours",
+    "rating": 4.5,
+    "review_count": 17,
+    "facebook": "https://www.facebook.com/shrisatyasaibloodcenter",
+    "facilities": [
+      "AC donation rooms",
+      "Blood collection facility",
+      "Blood storage facility",
+      "24-hour service"
+    ]
+  },
+  "intents": [
+    {
+      "intent": "greeting",
+      "training_phrases": [
+        "hi",
+        "hello",
+        "hey there",
+        "good morning"
+      ],
+      "responses": [
+        "Welcome to Shri Satya Sai Blood Centre, Cidco. How can I help you today?"
+      ]
+    },
+    {
+      "intent": "get_address",
+      "training_phrases": [
+        "where are you located",
+        "what is your address",
+        "how do I reach the blood bank",
+        "location of the centre",
+        "directions to your centre"
+      ],
+      "responses": [
+        "We are located at Plot No. 1B, Satvahana Society, opp. Sant Tukaram Natyamandir, N-5, Cidco, Chhatrapati Sambhajinagar, Maharashtra 431003."
+      ]
+    },
+    {
+      "intent": "get_contact",
+      "training_phrases": [
+        "what is your phone number",
+        "how can I contact you",
+        "give me your contact details",
+        "phone number please"
+      ],
+      "responses": [
+        "You can reach us at 09168104104. We are open 24 hours."
+      ]
+    },
+    {
+      "intent": "get_hours",
+      "training_phrases": [
+        "what are your timings",
+        "when are you open",
+        "are you open now",
+        "working hours"
+      ],
+      "responses": [
+        "We are open 24 hours, every day, for blood donation and emergency requirements."
+      ]
+    },
+    {
+      "intent": "donate_blood",
+      "training_phrases": [
+        "I want to donate blood",
+        "how can I donate blood",
+        "process for blood donation",
+        "can I donate blood today"
+      ],
+      "responses": [
+        "That's wonderful! You can walk in anytime since we're open 24 hours, or call us at 09168104104 to schedule your donation. Our centre has AC rooms and proper collection facilities to make the process comfortable."
+      ]
+    },
+    {
+      "intent": "donation_eligibility",
+      "training_phrases": [
+        "who can donate blood",
+        "am I eligible to donate blood",
+        "what is the age limit for blood donation",
+        "can I donate blood if I have diabetes",
+        "requirements for blood donation"
+      ],
+      "responses": [
+        "Generally, donors should be between 18-65 years old, weigh at least 50 kg, and be in good health. Please call us at 09168104104 so our staff can confirm your eligibility based on your specific health condition."
+      ]
+    },
+    {
+      "intent": "blood_availability",
+      "training_phrases": [
+        "do you have O negative blood available",
+        "is blood available right now",
+        "check blood stock",
+        "I need blood urgently"
+      ],
+      "responses": [
+        "For real-time blood availability, please call us directly at 09168104104. Our team can confirm stock for the specific blood group you need."
+      ]
+    },
+    {
+      "intent": "emergency_request",
+      "training_phrases": [
+        "emergency blood needed",
+        "urgent blood requirement",
+        "patient needs blood immediately"
+      ],
+      "responses": [
+        "For emergencies, please call us right away at 09168104104. We are open 24 hours and will assist you as quickly as possible."
+      ]
+    },
+    {
+      "intent": "facilities_info",
+      "training_phrases": [
+        "what facilities do you have",
+        "is there AC in the donation room",
+        "tell me about your centre"
+      ],
+      "responses": [
+        "Our centre has AC donation rooms with proper blood collection and storage facilities, ensuring a safe and comfortable experience for donors."
+      ]
+    },
+    {
+      "intent": "reviews_feedback",
+      "training_phrases": [
+        "what do people say about you",
+        "show me reviews",
+        "are you a good blood bank"
+      ],
+      "responses": [
+        "We're rated 4.5 out of 5 based on 17 Google reviews. Donors often mention our comfortable AC facilities and dedicated service. Thank you for your support!"
+      ]
+    },
+    {
+      "intent": "social_media",
+      "training_phrases": [
+        "do you have facebook",
+        "social media page",
+        "where can I follow you online"
+      ],
+      "responses": [
+        "Yes! You can follow us on Facebook: https://www.facebook.com/shrisatyasaibloodcenter"
+      ]
+    },
+    {
+      "intent": "goodbye",
+      "training_phrases": [
+        "bye",
+        "thank you",
+        "thanks, bye",
+        "that's all"
+      ],
+      "responses": [
+        "Thank you for reaching out to Shri Satya Sai Blood Centre. Stay healthy, and thank you for supporting blood donation!"
+      ]
+    }
+  ],
+  "fallback": {
+    "responses": [
+      "I'm sorry, I didn't quite understand that. You can ask me about our address, timings, blood donation process, eligibility, or contact details. For urgent help, please call 09168104104."
+    ]
+  }
+}
