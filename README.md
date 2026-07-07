@@ -94,9 +94,36 @@ Donate blood, Timings, and Contact.
 `http://localhost:5000/demo` — this loads a stand-in webpage with the
 widget embedded, exactly as it would look on your real site.
 
-## 5. Improving the bot later
+## 6. Upgrade to AI-powered answers (optional, free)
 
-- Add more `training_phrases` for anything the bot misunderstands
-- Add Marathi/Hindi phrases if most users type in those languages
-- Connect it to WhatsApp Business API for wider reach
-- Add a live blood-inventory lookup if you start tracking stock digitally
+By default the bot only matches your training phrases. To make it genuinely
+understand *any* question — while still knowing your real business facts —
+you can connect it to a free AI model via Groq.
+
+**Step 1: Get a free API key**
+1. Go to https://console.groq.com and sign up (no credit card needed)
+2. Go to "API Keys" → "Create API Key"
+3. Copy the key (starts with `gsk_...`)
+
+**Step 2: Add it as an environment variable**
+
+Locally, before running `python app.py`:
+```
+# Windows PowerShell
+$env:GROQ_API_KEY="gsk_your_key_here"
+python app.py
+
+# Mac/Linux
+export GROQ_API_KEY="gsk_your_key_here"
+python app.py
+```
+
+On Render: go to your service → "Environment" tab → "Add Environment
+Variable" → Key: `GROQ_API_KEY`, Value: your key → Save. Render will
+redeploy automatically.
+
+**That's it.** Once the key is set, `/health` will show `"ai_enabled": true`,
+and the bot will start answering naturally using the AI, while still
+grounded in your address, hours, and donation info from `chatbot_data.json`.
+If the key is ever removed or the API is unreachable, it automatically
+falls back to the free local matching engine — the bot never goes offline.
