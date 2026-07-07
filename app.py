@@ -1,12 +1,33 @@
-from flask import Flask, request, jsonify, send_from_directory
+"""
+Flask API for the Shri Satya Sai Blood Centre chatbot.
+Run with: python app.py
+Serves:
+  - GET  /                -> the landing page (with chat widget)
+  - POST /chat            -> {"message": "..."} -> {"reply": "..."}
+
+Uses the AI engine (chatbot_ai_engine.py) if ANTHROPIC_API_KEY is set,
+otherwise falls back to the free local matching engine (chatbot_engine.py).
+"""
+
+from flask import Flask, request, jsonify, send_from_directory, session
 from flask_cors import CORS
-from chatbot_engine import BloodBankBot
 import os
+import secrets
 
 app = Flask(__name__, static_folder="static")
-CORS(app)  # allows your website (different domain) to call this API
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", secrets.token_hex(16))
+CORS(app, supports_credentials=True)  # allows your website (different domain) to call this API
 
-bot = BloodBankBot()
+USE_AI = bool(os.environ.get("GROQ_API_KEY"))
+
+if USE_AI:
+    from chatbot_ai_engine import BloodBankBot
+    bot = BloodBankBot()
+else:
+    from chatbot_engine import BloodBankBot
+    bot = BloodBankBot()
+
+MAX_HISTORY_TURNS = 8  # keep last N message pairs per visitor, to limit token usage
 
 
 @app.route("/")
@@ -33,13 +54,22 @@ def widget_script():
 def chat():
     data = request.get_json(force=True, silent=True) or {}
     user_message = data.get("message", "")
-    reply = bot.get_response(user_message)
+
+    if USE_AI:
+        history = session.get("history", [])
+        reply = bot.get_response(user_message, history=history)
+        history.append({"role": "user", "content": user_message})
+        history.append({"role": "assistant", "content": reply})
+        session["history"] = history[-(MAX_HISTORY_TURNS * 2):]
+    else:
+        reply = bot.get_response(user_message)
+
     return jsonify({"reply": reply})
 
 
 @app.route("/health")
 def health():
-    return jsonify({"status": "ok"})
+    return jsonify({"status": "ok", "ai_enabled": USE_AI})
 
 
 if __name__ == "__main__":
